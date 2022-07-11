@@ -14,8 +14,8 @@
 # -----------------------------------------------------------------------------
 # Builder image for C binaries and Magma proto files
 # -----------------------------------------------------------------------------
-ARG CPU_ARCH=x86_64
-ARG DEB_PORT=amd64
+ARG CPU_ARCH=aarch64
+ARG DEB_PORT=arm64
 ARG OS_DIST=ubuntu
 ARG OS_RELEASE=focal
 ARG EXTRA_REPO=https://artifactory.magmacore.org/artifactory/debian-test
@@ -91,6 +91,7 @@ RUN apt-get update && apt-get install -y \
   libgmp3-dev \
   libczmq-dev
 
+RUN git config --global url."https://ghproxy.com/https://github.com".insteadOf "https://github.com"
 RUN echo "deb https://artifactory.magmacore.org/artifactory/debian-test focal-ci main" > /etc/apt/sources.list.d/magma.list
 RUN wget -qO - https://artifactory.magmacore.org:443/artifactory/api/gpg/key/public | apt-key add -
 RUN apt-get update && apt-get install -y \
