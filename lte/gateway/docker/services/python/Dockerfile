@@ -14,8 +14,8 @@
 # -----------------------------------------------------------------------------
 # Builder image for Python binaries and Magma proto files
 # -----------------------------------------------------------------------------
-ARG CPU_ARCH=x86_64
-ARG DEB_PORT=amd64
+ARG CPU_ARCH=aarch64
+ARG DEB_PORT=arm64
 ARG OS_DIST=ubuntu
 ARG OS_RELEASE=focal
 ARG EXTRA_REPO=https://artifactory.magmacore.org/artifactory/debian-test
@@ -57,7 +57,7 @@ RUN apt-get update && apt-get install -y \
   libsystemd-dev \
   libprotobuf-dev
 
-
+RUN git config --global url."https://ghproxy.com/https://github.com".insteadOf "https://github.com"
 RUN cd /usr/local/bin && ln -s /usr/bin/python3 python
 RUN gem install fpm
 
