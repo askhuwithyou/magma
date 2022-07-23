@@ -68,7 +68,34 @@ EOF
   apt-get update -y
   apt-get upgrade -y
   apt-get install curl zip python3-pip docker.io net-tools sudo docker-compose -y
-
+  
+  apt-get install -y \
+  apt-utils \
+  apt-transport-https \
+  ca-certificates \
+  wget \
+  gnupg \
+  sudo \
+  netcat \
+  libyaml-cpp-dev \
+  libgoogle-glog-dev \
+  libprotoc-dev \
+  libmnl-dev \
+  libsctp-dev \
+  psmisc \
+  openssl \
+  net-tools \
+  tshark \
+  tzdata \
+  iproute2 \
+  iptables \
+  libtspi1 \
+  && rm -rf /var/lib/apt/lists/*
+  
+  echo "deb https://artifactory.magmacore.org/artifactory/debian-test focal-ci main" > /etc/apt/sources.list.d/magma.list
+  wget -qO - https://artifactory.magmacore.org:443/artifactory/api/gpg/key/public | apt-key add -
+  
+  
   echo "Making sure $MAGMA_USER user is sudoers"
   if ! grep -q "$MAGMA_USER ALL=(ALL) NOPASSWD:ALL" /etc/sudoers; then
     adduser --disabled-password --gecos "" $MAGMA_USER
