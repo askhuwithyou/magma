@@ -150,6 +150,9 @@
     name: "{{ packages }}"
   vars:
     packages:
+      - libopenvswitch
+      - openvswitch-datapath-dkms
+      - openvswitch-datapath-source
       - openvswitch-common
       - openvswitch-switch
   tags:
