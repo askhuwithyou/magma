@@ -1,0 +1,38 @@
+just useful on rasspi,on rockchip ,there is some error.
+
+pt-get install -y \
+  apt-utils \
+  apt-transport-https \
+  ca-certificates \
+  wget \
+  gnupg \
+  sudo \
+  netcat \
+  libyaml-cpp-dev \
+  libgoogle-glog-dev \
+  libprotoc-dev \
+  libmnl-dev \
+  libsctp-dev \
+  psmisc \
+  openssl \
+  net-tools \
+  tshark \
+  tzdata \
+  iproute2 \
+  iptables \
+  libtspi1 \
+  build-essential \
+  && rm -rf /var/lib/apt/lists/*
+
+echo "deb https://artifactory.magmacore.org/artifactory/debian-test focal-ci main" > /etc/apt/sources.list.d/magma.list
+wget -qO - https://artifactory.magmacore.org:443/artifactory/api/gpg/key/public | apt-key add -
+
+echo "deb https://packages.fluentbit.io/ubuntu/focal focal main" > /etc/apt/sources.list.d/tda.list
+wget -qO - https://packages.fluentbit.io/fluentbit.key | apt-key add -
+
+apt-get update && apt-get install -y \
+  libopenvswitch \
+  openvswitch-datapath-dkms \
+  openvswitch-datapath-source  \
+  openvswitch-common  \
+  openvswitch-switch
