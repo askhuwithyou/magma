@@ -6,6 +6,7 @@ ARG PLATFORM=linux/amd64
 FROM --platform=$PLATFORM ubuntu:xenial as base
 
 ENV GO111MODULE on
+ENV GOPROXY https://goproxy.cn
 ENV GOPATH ${USER}/go
 ENV GOBIN /build/bin
 ENV PATH ${PATH}:${GOBIN}:${GOPATH}/bin
