@@ -1,6 +1,6 @@
 just useful on rasspi,on rockchip ,there is some error.
 
-pt-get install -y \
+apt-get install -y \
   apt-utils \
   apt-transport-https \
   ca-certificates \
